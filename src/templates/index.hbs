@@ -1,0 +1,15 @@
+{{>header}}
+
+export { ApiError } from './core/ApiError';
+export { OpenAPI } from './core/OpenAPI';
+export type { OpenAPIConfig } from './core/OpenAPI';
+
+{{#if models}}
+export { {{#each models}}{{#if @last}}{{{name}}}{{else}}{{{name}}}, {{/if}}{{/each}} } from './models/models';
+{{/if}}
+
+{{#if services}}
+{{#each services}}
+export { {{{name}}}Service } from './services/{{{name}}}Service';
+{{/each}}
+{{/if}}
