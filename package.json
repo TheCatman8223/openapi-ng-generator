@@ -1,6 +1,6 @@
 {
   "name": "openapi-ng-generator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Library that generates Angular client based on OpenAPI specification v3.0",
   "type": "module",
   "exports": {
