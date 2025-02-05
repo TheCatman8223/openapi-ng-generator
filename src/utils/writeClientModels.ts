@@ -19,7 +19,7 @@ export const writeClientModels = async (
 	useUnionTypes: boolean,
 ): Promise<void> => {
 	const outputFile = resolve(outputPath, 'models.ts'); // Path to the single output file
-
+	
 	const fileExists = existsSync(outputFile);
 	const fileContent = fileExists ? readFileSync(outputFile, 'utf8') : '';
 

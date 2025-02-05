@@ -4,9 +4,14 @@ export { ApiError } from './core/ApiError';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-{{#if models}}
-export type { {{#each models}}{{#if @last}}{{{name}}}{{else}}{{{name}}}, {{/if}}{{/each}} } from './models/models';
-{{/if}}
+{{!-- TODO, GROUPING!! --}}
+{{#each models}}
+{{#equals export 'enum'}}
+export { {{{name}}} } from './models/models'
+{{else}}
+export type { {{{name}}} } from './models/models'
+{{/equals}}
+{{/each}}
 
 {{#if services}}
 {{#each services}}
