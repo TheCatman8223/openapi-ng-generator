@@ -5,7 +5,7 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 {{#if models}}
-export { {{#each models}}{{#if @last}}{{{name}}}{{else}}{{{name}}}, {{/if}}{{/each}} } from './models/models';
+export type { {{#each models}}{{#if @last}}{{{name}}}{{else}}{{{name}}}, {{/if}}{{/each}} } from './models/models';
 {{/if}}
 
 {{#if services}}
