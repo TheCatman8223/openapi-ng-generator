@@ -36,7 +36,7 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "bin": {
-    "openapi-ng-generator": "bin/index.js"
+    "openapi-ng-gen": "bin/index.js"
   },
   "files": [
     "bin/index.js",
