@@ -1,6 +1,7 @@
 {{>header}}
 
 import type { ApiRequestOptions } from './ApiRequestOptions';
+import { HttpContext } from '@angular/common/http';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
@@ -14,6 +15,7 @@ export type OpenAPIConfig = {
 	USERNAME?: string | Resolver<string> | undefined;
 	PASSWORD?: string | Resolver<string> | undefined;
 	HEADERS?: Headers | Resolver<Headers> | undefined;
+	CONTEXT?: HttpContext | undefined;
 	ENCODE_PATH?: ((path: string) => string) | undefined;
 };
 
@@ -27,4 +29,5 @@ export const OpenAPI: OpenAPIConfig = {
 	PASSWORD: undefined,
 	HEADERS: undefined,
 	ENCODE_PATH: undefined,
+	CONTEXT: undefined
 };
