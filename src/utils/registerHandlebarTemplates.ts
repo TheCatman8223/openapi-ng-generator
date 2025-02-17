@@ -3,6 +3,7 @@ import angularGetHeaders from '../templates/core/angular/getHeaders.hbs';
 import angularGetRequestBody from '../templates/core/angular/getRequestBody.hbs';
 import angularGetResponseBody from '../templates/core/angular/getResponseBody.hbs';
 import angularGetResponseHeader from '../templates/core/angular/getResponseHeader.hbs';
+import angularHttpInterceptor from '../templates/core/angular/httpInterceptor.hbs';
 import angularSendRequest from '../templates/core/angular/sendRequest.hbs';
 import templateCoreApiError from '../templates/core/ApiError.hbs';
 import templateCoreApiRequestOptions from '../templates/core/ApiRequestOptions.hbs';
@@ -60,6 +61,7 @@ export interface Templates {
 		apiRequestOptions: Handlebars.TemplateDelegate;
 		apiResult: Handlebars.TemplateDelegate;
 		request: Handlebars.TemplateDelegate;
+		httpInterceptor: Handlebars.TemplateDelegate;
 	};
 }
 
@@ -70,6 +72,7 @@ export interface Templates {
 export const registerHandlebarTemplates = (root: {
 	useOptions: boolean;
 	useUnionTypes: boolean;
+	withInterceptor: boolean | undefined;
 }): Templates => {
 	registerHandlebarHelpers(root);
 
@@ -87,6 +90,7 @@ export const registerHandlebarTemplates = (root: {
 			apiRequestOptions: Handlebars.template(templateCoreApiRequestOptions),
 			apiResult: Handlebars.template(templateCoreApiResult),
 			request: Handlebars.template(templateCoreRequest),
+			httpInterceptor: Handlebars.template(angularHttpInterceptor)
 		},
 	};
 

@@ -23,6 +23,7 @@ const params = program
   .requiredOption('-o, --output <value>', 'Output directory (required)')
   .option('--useOptions', 'Use options instead of arguments')
   .option('--useUnionTypes', 'Use union types instead of enums')
+  .option('--withInterceptor', 'Adds an angular http interceptor')
   .parse(process.argv)
   .opts();
 
@@ -33,7 +34,8 @@ import(pathToFileURL(path.resolve(__dirname, '../dist/index.js')).href).then(Ope
       input: params.input,
       output: params.output,
       useOptions: params.useOptions,
-      useUnionTypes: params.useUnionTypes
+      useUnionTypes: params.useUnionTypes,
+      withInterceptor: params.withInterceptor
     })
     .then(() => {
       console.log(`${colors.green}Files successfully generated at: ${colors.cyan}${params.output}${colors.reset}`);

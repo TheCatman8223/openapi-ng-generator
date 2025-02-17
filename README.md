@@ -31,6 +31,7 @@ Options:
 -o, --output <value> Output directory (required)
 --useOptions Use options instead of arguments
 --useUnionTypes Use union types instead of enums
+--withInterceptor Add an angular http interceptor
 
 ```
 

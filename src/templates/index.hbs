@@ -3,6 +3,9 @@
 export { ApiError } from './core/ApiError';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
+{{#if @root.withInterceptor}}
+export { OpenApiInterceptor } from './core/openapi-http-interceptor';
+{{/if}}
 
 {{!-- TODO, GROUPING!! --}}
 {{#each models}}

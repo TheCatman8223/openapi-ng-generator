@@ -12,15 +12,18 @@ import { Templates } from './registerHandlebarTemplates';
  * @param templates The loaded handlebar templates
  * @param outputPath Directory to write the generated files to
  * @param useUnionTypes Use union types instead of enums
+ * @param withInterceptor Creates an angular http interceptor
  */
 export const writeClientIndex = async (
 	client: Client,
 	templates: Templates,
 	outputPath: string,
 	useUnionTypes: boolean,
+	withInterceptor: boolean | undefined
 ): Promise<void> => {
 	const templateResult = templates.index({
 		useUnionTypes,
+		withInterceptor,
 		server: client.server,
 		version: client.version,
 		models: client.models,

@@ -12,6 +12,7 @@ export type Options = {
 	output: string;
 	useOptions?: boolean;
 	useUnionTypes?: boolean;
+	withInterceptor?: boolean | undefined;
 };
 
 /**
@@ -22,18 +23,21 @@ export type Options = {
  * @param output The relative location of the output directory
  * @param useOptions Use options or arguments functions
  * @param useUnionTypes Use union types instead of enums
+ * @param withInterceptor Creates an angular http interceptor
  */
 export const generate = async ({
 	input,
 	output,
 	useOptions = false,
 	useUnionTypes = false,
+	withInterceptor
 }: Options): Promise<void> => {
 	const openApi = isString(input) ? await getOpenApiSpec(input) : input;
 	const openApiVersion = getOpenApiVersion(openApi);
 	const templates = registerHandlebarTemplates({
 		useUnionTypes,
 		useOptions,
+		withInterceptor
 	});
 
 	switch (openApiVersion) {
@@ -45,7 +49,8 @@ export const generate = async ({
 				templates,
 				output,
 				useOptions,
-				useUnionTypes
+				useUnionTypes,
+				withInterceptor
 			);
 			break;
 		}

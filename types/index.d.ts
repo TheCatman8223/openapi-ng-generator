@@ -3,6 +3,7 @@ export type Options = {
 	output: string;
 	useOptions?: boolean;
 	useUnionTypes?: boolean;
+	withInterceptor?: boolean | undefined;
 };
 
 export declare function generate(options: Options): Promise<void>;

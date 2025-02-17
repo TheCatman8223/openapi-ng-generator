@@ -8,6 +8,7 @@ import { writeClientCore } from './writeClientCore';
 import { writeClientIndex } from './writeClientIndex';
 import { writeClientModels } from './writeClientModels';
 import { writeClientServices } from './writeClientServices';
+import { isDefined } from './isDefined';
 
 /**
  * Write our OpenAPI client, using the given templates at the given output
@@ -16,6 +17,7 @@ import { writeClientServices } from './writeClientServices';
  * @param output The relative location of the output directory
  * @param useOptions Use options or arguments functions
  * @param useUnionTypes Use union types instead of enums
+ * @param withInterceptor Creates an angular http interceptor
  */
 export const writeClient = async (
 	client: Client,
@@ -23,6 +25,7 @@ export const writeClient = async (
 	output: string,
 	useOptions: boolean,
 	useUnionTypes: boolean,
+	withInterceptor: boolean | undefined
 ): Promise<void> => {
 	const outputPath = resolve(process.cwd(), output);
 	const outputPathCore = resolve(outputPath, 'core');
@@ -35,7 +38,12 @@ export const writeClient = async (
 
 	await rmdir(outputPathCore);
 	await mkdir(outputPathCore);
-	await writeClientCore(client, templates, outputPathCore);
+	await writeClientCore(client, templates, outputPathCore, undefined);
+	if (isDefined(withInterceptor)) {
+		await rmdir(outputPathCore);
+		await mkdir(outputPathCore);
+		await writeClientCore(client, templates, outputPathCore, withInterceptor);
+	}
 
 	await rmdir(outputPathServices);
 	await mkdir(outputPathServices);
@@ -56,7 +64,8 @@ export const writeClient = async (
 		client,
 		templates,
 		outputPath,
-		useUnionTypes
+		useUnionTypes,
+		withInterceptor
 	);
 
 };
