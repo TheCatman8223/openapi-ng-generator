@@ -11,7 +11,7 @@ export const sendRequest = <T>(
 		headers,
 		body: body ?? formData,
 		withCredentials: config.WITH_CREDENTIALS,
-		context: config.CONTEXT ? config.CONTEXT : undefined
+		context: config.CONTEXT ? config.CONTEXT : undefined,
 		observe: 'response',
 	});
 };
